@@ -1,0 +1,27 @@
+{# templates/pages/layout.html.twig #}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mon Site{% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}"> {# Lien vers un fichier CSS global #}
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+
+    {# Inclut la barre de navigation #}
+    {% include 'composants/navbar.html.twig' %}
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; {{ "now"|date("Y") }} Mon Site</p>
+    </footer>
+
+    <script src="{{ asset('js/main.js') }}"></script> {# Lien vers un fichier JavaScript global #}
+    {% block javascripts %}{% endblock %}
+</body>
+</html>
