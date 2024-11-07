@@ -1,7 +1,12 @@
 {% block body %} 
-<h1>Allez-y inscrivez-vous ici !</h1>
+<h2>Allez-y inscrivez-vous ici !</h2>
 {{form_start(registrationForm)}}
 {{form_widget(registrationForm)}}
 <button type="submit">Envoyer</button>
 {{form_end(registrationForm)}}
+<h2>Déjà inscrit ? Connectez-vous ici ! </h2>
+{{form_start(loginForm)}}
+{{form_widget(loginForm)}}
+<button type="submit">Envoyer</button>
+{{form_end(loginForm)}}
 {% endblock %}

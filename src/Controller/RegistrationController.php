@@ -24,26 +24,27 @@ class RegistrationController extends AbstractController
         ): Response
     {
         $user = new User();
-        $form = $this->createForm(RegistrationFormType:: class, $user);
-        $form->handleRequest($request);
+        $registrationForm = $this->createForm(RegistrationFormType:: class, $user);
+        $registrationForm->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()){
-            $plainPassword = $form->get('plainPassword')->getData();
+        if($registrationForm->isSubmitted() && $registrationForm->isValid()){
+            $plainPassword = $registrationForm->get('plainPassword')->getData();
             $hashedPassword = $passwordHasher->hashPassword($user, $plainPassword); 
             $user->setPassword($hashedPassword);
 
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $this->redirectToRoute('accueil');
+            return $this->redirectToRoute('homepage');
         }
 
         $loginForm = $this->createForm(LoginFormType::class);
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('pages/registration.html.twig', [
-            'registrationForm'=>$form->createView(),
+        return $this->render('pages/index.html.twig', [
+            'registrationForm' => $registrationForm->createView(),
+            'loginForm' => $loginForm->createView(),
         ]);
     }
 }

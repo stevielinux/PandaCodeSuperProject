@@ -6,5 +6,10 @@
 {% block content %}
     <h1>Bienvenue sur Mon Site</h1>
     <p>Page d'accueil en construction...</p>
-    <a href="{{ path('registration') }}">Inscription</a>
+    <a href="{{path('registration')}}">Compte</a>
+    {% if registrationForm is defined %}
+    {% include "pages/registration.html.twig" %}
+    {% else %}
+    <p>Formulaire non disponible</p>
+    {% endif %}}
 {% endblock %}
